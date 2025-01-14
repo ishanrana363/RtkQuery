@@ -35,6 +35,9 @@ const Home = () => {
                     <p>No posts available.</p>
                 )}
             </div>
+            <div>
+                <Link to="/add-post">Create New Post</Link>
+            </div>
         </div>
     );
 };
