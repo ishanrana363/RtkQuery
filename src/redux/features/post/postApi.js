@@ -12,19 +12,37 @@ const postApi = createApi({
         postById: builder.query({
             query: (id) => `/posts/${id}`,
         }),
-        createPost : builder.mutation({
-            query : (data)=>({
-                url : `/posts`,
-                method : "POST",
-                body : JSON.stringify(data),
-                headers : {
-                    'Content-Type' : 'application/json',
-                    'Accept' : 'application/json'
+        createPost: builder.mutation({
+            query: (data) => ({
+                url: `/posts`,
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 }
             })
-        })
+        }),
+        deletePost: builder.mutation({
+            query: (id) => ({
+                url: `/posts/${id}`,
+                method: "DELETE",
+            })
+        }),
+        updatePost: builder.mutation({
+            query: ({data, id}) => ({
+                url: `/posts/${id}`,
+                method: "PUT",
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+
+            })
+        }),
     }),
 });
 
-export const { useGetAllPostDataQuery, usePostByIdQuery, useCreatePostMutation } = postApi;
+export const { useGetAllPostDataQuery, usePostByIdQuery, useCreatePostMutation, useDeletePostMutation, useUpdatePostMutation } = postApi;
 export default postApi;
